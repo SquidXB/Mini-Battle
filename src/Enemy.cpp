@@ -2,7 +2,7 @@
 #include <iostream>
 
 Enemy::Enemy()
-    : name("Enemy"), health(100), attackDmg(5) {
+    : name("Enemy"), health(100), attackDmg(5) {  //Health & Dmg will depend on type
         // std::cout << name << " created!" << std::endl;
     }
 

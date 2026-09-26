@@ -2,16 +2,12 @@
 #include <iostream>
 
 Player::Player(const std::string name)
-    : name(name), health(100), level(1) {
+    : name(name), health(100), maxHealth(100), level(1), xp(0), attackDmg(level + 5) {
         // std::cout << name << " created!" << std::endl;
     }
 
 Player::~Player() {
     std::cout << name << " has been defeated!" << std::endl;
-}
-
-void Player::attackEnemy() {
-    std::cout << "Attacked enemy for 0 dmg" << std::endl;
 }
 
 void Player::healSelf() {
@@ -26,8 +22,16 @@ int& Player::getHealth() {
     return health;
 }
 
+int& Player::getMaxHealth() {
+    return maxHealth;
+}
+
 int& Player::getLevel() {
     return level;
+}
+
+int& Player::getXp() {
+    return xp;
 }
 
 int& Player::getDmg() {

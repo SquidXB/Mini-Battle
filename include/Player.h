@@ -8,7 +8,9 @@ class Player {
 private:
     std::string name;
     int health;
+    int maxHealth;
     int level;
+    int xp;
     int attackDmg;
     //std::map<items, int> inventory;
     Enemy* enemy;
@@ -16,11 +18,12 @@ private:
 public:
     Player(const std::string name);
     ~Player();
-    void attackEnemy();
     void healSelf();
 
     std::string& getName();
     int& getHealth();
+    int& getMaxHealth();
     int& getLevel();
+    int& getXp();
     int& getDmg();
 };

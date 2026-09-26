@@ -1,21 +1,8 @@
 #include <iostream>
-#include <memory> //include for smart ptrs
 #include "include/Player.h"
 #include "include/Enemy.h"
 #include "include/Battle.h"
-// Use static for structs (when not tied to certain users)
 
-/* important string/array? methods:
-substr(start, end)
-append(string)
-at(index)
-front() & back() - first & last char
-begin() & end() - iterators for loops
-erase (startpos, length)
-length()/size()
-insert(char, pos)*/
-
-// GO BACK OVER OPERATOR OVERLOADING
 int main() {
     Player p("Squid");
     Enemy e;
