@@ -2,7 +2,7 @@
 #include <iostream>
 
 Player::Player(const std::string name)
-    : name(name), health(100), maxHealth(100), level(1), xp(0), attackDmg(level + 5) {
+    : name(name), health(100), maxHealth(100), minDmg(5), maxDmg(20), level(1), xp(0), attackDmg(5) {
         // std::cout << name << " created!" << std::endl;
     }
 
@@ -36,4 +36,12 @@ int& Player::getXp() {
 
 int& Player::getDmg() {
     return attackDmg;
+}
+
+int& Player::getMinDmg() {
+    return minDmg;
+}
+
+int& Player::getMaxDmg() {
+    return maxDmg;
 }

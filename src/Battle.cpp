@@ -6,7 +6,7 @@
 
 class Player;
 class Enemy;
-static int choice;
+static int choice, minRange = 0, maxRange;
 
 void Battle::viewStats(Player* player, Enemy* enemy) {
     std::cout << player->getName() << ": Level " << player->getLevel() << " Knight" << std::endl << "HP: " << player->getHealth() << std::endl << "DMG: " << player->getDmg() << std::endl;
@@ -20,48 +20,56 @@ void Battle::playerTurn(Player* player, Enemy* enemy) {
     choice = 0;
     std::cout << "Choose a move: ";
     std::cin >> choice;
-    try{
-        switch (choice) { 
-            case 1: 
-                Battle::playerAttack(player, enemy);
-                break;  //call player's attack & add modifier of utils, return from utils # of dmg points to deduct from enemy, add message to tell how much damage
-            case 2: 
-                if (player->getHealth() == player->getMaxHealth()) {
-                    std::cout << "You already have full health!" << std::endl;
-                    Battle::playerTurn(player, enemy);
-                }
-                // Battle::playerHeal();
-                break;    //call player's heal (eventually if they have potions), & add rand to see if successful & for how much, add message
-            case 3: 
-                Battle::viewStats(player, enemy);
-                break;
-            case 4:
-                std::cout << player->getName() << " has run away!" << std::endl; 
-                return;
-            default: 
-                std::cout << "Invalid input. Try again!" << std::endl;
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
+    switch (choice) { 
+        case 1: 
+            Battle::playerAttack(player, enemy);
+            break;  //call player's attack & add modifier of utils, return from utils # of dmg points to deduct from enemy, add message to tell how much damage
+        case 2: 
+            if (player->getHealth() == player->getMaxHealth()) {
+                std::cout << "You already have full health!" << std::endl;
                 Battle::playerTurn(player, enemy);
+            }
+            // Battle::playerHeal();
+            break;    //call player's heal (eventually if they have potions), & add rand to see if successful & for how much, add message
+        case 3: 
+            Battle::viewStats(player, enemy);
+            break;
+        case 4:
+            std::cout << player->getName() << " has run away!" << std::endl; 
+            return;
+        default: 
+            std::cout << "Invalid input. Try again!" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            Battle::playerTurn(player, enemy);
         }
-    }
-    catch (const std::invalid_argument& e) {
-        std::cout << "Invalid response. Try again!";
-        Battle::playerTurn(player, enemy);
-    }
 }
 
 void Battle::playerAttack(Player* player, Enemy* enemy) {
-    int dmgDealt = player->getDmg() + Utils::randomNum();
+    int dmgDealt = (player->getMinDmg() + (player->getLevel() / 5)) + Utils::randomNum(minRange, maxRange);
+    // int dmgDealt = player->getDmg() + Utils::randomNum();
     enemy->getHealth() -= dmgDealt;
     std::cout << "Attacked " << enemy->getName() << " for " << dmgDealt << " dmg!" << std::endl;
 }
 
 void Battle::playerHeal(Player* player) {
-    //std::cout << player->getName() " healed for " __;
+    /* Ask "Choose a potion? "
+    You have:
+       - Heal1 x # : (min, max)
+       - Heal2 x # : (min, max)
+
+    if (Heal1) {
+        player->getHealth += Utils::rand(min, max)
+    }
+    else {
+        player->getHealth += Utils::rand(min, max)
+    }
+    std::cout << player->getName() " healed for " __;
+    */
 }
 
 void Battle::runBattle(Player* player, Enemy* enemy) {
+    maxRange = player->getLevel() > 20 ? 5 : (player->getLevel() / 5) + 1; 
     std::cout << "Battle has begun!" << std::endl;
     while (((player->getHealth() > 0) && (enemy->getHealth()) > 0) && choice != 4) {
         Battle::viewStats(player, enemy);
