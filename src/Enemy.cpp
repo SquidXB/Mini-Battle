@@ -2,7 +2,7 @@
 #include <iostream>
 
 Enemy::Enemy()
-    : name("Enemy"), health(100), attackDmg(5) {  //Health & Dmg will depend on type
+    : name("Enemy"), health(100), maxHealth(100), attackDmg(5) {  //Health & Dmg will depend on type
         // std::cout << name << " created!" << std::endl;
     }
 
@@ -20,4 +20,12 @@ std::string& Enemy::getName() {
 
 int& Enemy::getHealth() {
     return health;
+}
+
+int& Enemy::getMaxHealth() {
+    return maxHealth;
+}
+
+int& Enemy::getAttackDmg() {
+    return attackDmg;
 }

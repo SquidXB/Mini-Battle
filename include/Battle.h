@@ -13,7 +13,8 @@ struct Battle {
     static void playerTurn(Player* player, Enemy* enemy);
     static void playerAttack(Player* player, Enemy* enemy);
     static void playerHeal(Player* player);
-    static void enemyAttack();
+    static void enemyTurn(Player* player, Enemy* enemy);
+    static void enemyAttack(Player* player, Enemy* enemy);
     static void viewStats(Player* player, Enemy* enemy);
 
 };

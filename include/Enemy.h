@@ -9,6 +9,7 @@ class Enemy {
 private:
     std::string name;
     int health;
+    int maxHealth;
     int attackDmg;
     Player* player;
 public:
@@ -17,4 +18,6 @@ public:
     void attack();
     std::string& getName();
     int& getHealth();
+    int& getMaxHealth();
+    int& getAttackDmg();
 };

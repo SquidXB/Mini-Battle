@@ -7,6 +7,9 @@ int main() {
     Player p("Squid");
     Enemy e;
     Battle::runBattle(&p, &e);
+    std::string a;
+    std::cout << "Game Over. Would you like to play again?";
+    std::cin >> a;
     return 0;  
 }
 
